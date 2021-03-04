@@ -1,8 +1,11 @@
 package com.facilsolucoes.challenge.entities.dto;
 
+import java.io.Serializable;
+
 import com.facilsolucoes.challenge.entities.Role;
 
-public class RoleDTO {
+public class RoleDTO  implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	private String authority;

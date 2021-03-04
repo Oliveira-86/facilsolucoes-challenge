@@ -1,16 +1,26 @@
 package com.facilsolucoes.challenge.entities.dto;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.facilsolucoes.challenge.entities.User;
 
-public class UserDTO {
+public class UserDTO  implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	
+	@Size(min = 5, max = 60, message = "Name should be between 5 and 60 chart")
+	@NotBlank(message = "Field should not be empty")
 	private String name;
+	
+	@Email
 	private String email;
-	private String password;
 	
 	Set<RoleDTO> roles = new HashSet<>();
 	
@@ -22,7 +32,6 @@ public class UserDTO {
 		this.id = id;
 		this.name = name;
 		this.email = email;
-		this.password = password;
 		this.roles = roles;
 	}
 	
@@ -31,7 +40,6 @@ public class UserDTO {
 		id = entity.getId();
 		name = entity.getName();
 		email = entity.getEmail();
-		password = entity.getPassword();
 		entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
 	}
 
@@ -57,14 +65,6 @@ public class UserDTO {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public Set<RoleDTO> getRoles() {
