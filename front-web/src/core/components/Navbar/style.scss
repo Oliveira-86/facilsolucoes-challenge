@@ -1,0 +1,35 @@
+.main-nav {
+    height: 70px;
+    align-items: center;
+    color: #FFF;
+    padding-left: 40px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.nav-logo {
+  margin-bottom: 15px;
+}
+
+.main-menu {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.nav-button {
+  width: 150px;
+  border: 1px solid #FFF;
+  background: transparent;
+  border-radius: 4px;
+  color: #FFF;
+  font-weight: bold;
+  padding: 8px 40px;
+
+    &:hover{
+      transition: background, color 0.6s;
+      background: white;
+      color: #0E7BA4;
+    }
+}
