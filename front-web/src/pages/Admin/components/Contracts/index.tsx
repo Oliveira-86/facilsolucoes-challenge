@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
+import List from '../Contracts/List/index';
 
 const Contracts = () => {
     
@@ -8,7 +9,7 @@ const Contracts = () => {
         <div>
             <Switch>
                 <Route path="/admin/contracts" exact>
-                    <h1>Listagem de Contratos</h1>
+                    <List />
                 </Route>
                 <Route path="/admin/contracts/create">
                     <h1>Criar Contrato</h1>
