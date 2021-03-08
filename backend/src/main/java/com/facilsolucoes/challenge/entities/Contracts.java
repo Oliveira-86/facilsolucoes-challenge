@@ -1,7 +1,7 @@
 package com.facilsolucoes.challenge.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,17 +18,19 @@ public class Contracts implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String name;
 	private Double value;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private Date date;
+	private Instant date;
 	
 	public Contracts() {
 	}
 
-	public Contracts(Long id, Double value, Date date) {
+	public Contracts(Long id, String name, Double value, Instant date) {
 		super();
 		this.id = id;
+		this.name = name;
 		this.value = value;
 		this.date = date;
 	}
@@ -41,6 +43,14 @@ public class Contracts implements Serializable{
 		this.id = id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public Double getValue() {
 		return value;
 	}
@@ -49,11 +59,11 @@ public class Contracts implements Serializable{
 		this.value = value;
 	}
 
-	public Date getDate() {
+	public Instant getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(Instant date) {
 		this.date = date;
 	}
 

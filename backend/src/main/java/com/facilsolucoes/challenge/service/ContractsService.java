@@ -4,7 +4,6 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.facilsolucoes.challenge.entities.Contracts;
 import com.facilsolucoes.challenge.entities.dto.ContractsDTO;
 import com.facilsolucoes.challenge.repositories.ContractsRepository;
-import com.facilsolucoes.challenge.service.exceptions.DatabaseViolationException;
 import com.facilsolucoes.challenge.service.exceptions.ResourceNotFoundException;
 
 @Service
@@ -25,7 +23,7 @@ public class ContractsService {
 	
 
 	@Transactional(readOnly=true)
-	public Page<ContractsDTO> findAllPaged(PageRequest pageRequest) {
+	public Page<ContractsDTO> findAllPaged(	PageRequest pageRequest) {
 		Page<Contracts> list = contractsRepository.findAll(pageRequest);
 		return list.map(x -> new ContractsDTO(x));
 		
@@ -65,9 +63,6 @@ public class ContractsService {
 		}
 		catch (EmptyResultDataAccessException e) {
 			throw new ResourceNotFoundException("Id not found " + id);
-		}
-		catch (DataIntegrityViolationException e) {
-			throw new DatabaseViolationException("Database Violation");
 		}
 	}
 	
