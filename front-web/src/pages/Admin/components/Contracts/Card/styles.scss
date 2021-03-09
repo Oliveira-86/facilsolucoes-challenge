@@ -3,6 +3,7 @@
     border-radius: 10px;
     padding: 15px 20px 15px 20px;
     display: flex;
+    justify-content: center;
 }
 
 .contract-card-text {
@@ -12,3 +13,17 @@
     color: #263238;
     margin-right: 25px;
 }
+
+.card-contracts-data {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card-contracts-button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100px;
+}
+

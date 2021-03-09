@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 import List from '../Contracts/List/index';
+import Form from './Form';
 
 const Contracts = () => {
     
@@ -12,7 +13,7 @@ const Contracts = () => {
                     <List />
                 </Route>
                 <Route path="/admin/contracts/create">
-                    <h1>Criar Contrato</h1>
+                    <Form />
                 </Route>
                 <Route path="/admin/contracts/:contractsId">
                     <h1>Detalhe do Contrato</h1>
