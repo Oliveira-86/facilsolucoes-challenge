@@ -1,6 +1,7 @@
 import axios, { Method } from 'axios';
 import qs from 'qs';
-import { CLIENT_ID, CLIENT_SECRET, getSessionData } from './OAuth';
+import history from './history';
+import { CLIENT_ID, CLIENT_SECRET, getSessionData, logout } from './OAuth';
 
 
 type RequestParams = {
@@ -17,6 +18,16 @@ type LoginData = {
 }
 
 const URL_BASE = 'http://localhost:8080';
+
+axios.interceptors.response.use(function(response) {
+    return response;
+}, function (error) {
+    if (error.response.status === 401) {
+        logout();
+    }
+
+    return Promise.reject(error);
+});
 
 export const makeResquest = ({ method = 'GET', url, data, params, headers }:RequestParams) => {
     return axios({

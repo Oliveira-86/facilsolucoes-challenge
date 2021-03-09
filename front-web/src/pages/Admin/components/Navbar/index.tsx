@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { isAllowedByRole } from '../../../../core/utils/OAuth';
 import './styles.scss';
 
 const Navbar = () => (
@@ -11,11 +12,13 @@ const Navbar = () => (
                     <p className="admin-nav-text">Meus Contratos</p>
                 </NavLink>
             </li>
-            <li>
-                <NavLink to="/admin/users" className="admin-nav-item">
-                    <p className="admin-nav-text">Meus Usuários</p>
-                </NavLink>
-            </li>
+           {isAllowedByRole(['ROLE_ADMIN']) && (
+                <li>
+                    <NavLink to="/admin/users" className="admin-nav-item">
+                        <p className="admin-nav-text">Meus Usuários</p>
+                    </NavLink>
+                </li>
+           )}
         </ul>
     </nav>
 );

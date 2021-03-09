@@ -28,6 +28,9 @@ const Form = () => {
                     className="form-control input-base margin-bottom"
                     name=""
                 />
+                <div className="invalid-feedback">
+                    Campo Inválido
+                </div>
                 <input 
                     type="text" 
                     placeholder="Valor" 

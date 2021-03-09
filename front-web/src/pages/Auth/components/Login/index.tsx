@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import ButtonIcon from '../../../../core/components/ButtonIcon';
 import AuthCard from '../Card';
@@ -7,6 +7,9 @@ import './styles.scss';
 import { makeLogin } from '../../../../core/utils/Request';
 import { saveSessionData } from '../../../../core/utils/OAuth';
 
+type LocationState = {
+    from: string;
+}
 
 type FormData = {
     username: string;
@@ -14,20 +17,23 @@ type FormData = {
 }
 
 const Login = () => {
-    const { register, handleSubmit } = useForm<FormData>();
-    const [ hasValid, setHasValid ] = useState(false);
+    const { register, handleSubmit, errors } = useForm<FormData>();
+    const [hasValid, setHasValid] = useState(false);
     const history = useHistory();
+    let location = useLocation<LocationState>();
+
+    const { from } = location.state || { from: { pathname: "/admin" } }
 
     const onSubmit = (data: FormData) => {
         makeLogin(data)
-        .then(response => {
-            setHasValid(false);
-            saveSessionData(response.data);
-            history.push('/admin');
-        })
-        .catch(() => {
-            setHasValid(true);
-        })
+            .then(response => {
+                setHasValid(false);
+                saveSessionData(response.data);
+                history.replace(from);
+            })
+            .catch(() => {
+                setHasValid(true);
+            })
     }
 
     return (
@@ -38,21 +44,41 @@ const Login = () => {
                 </div>
             )}
             <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
-                <input
-                    type="email"
-                    className="form-control input-base margin-bottom "
-                    placeholder="Email"
-                    name="username"
-                    ref={register ({ required : true })}
-                />
-                <input
-                    type="password"
-                    className="form-control input-base"
-                    placeholder="Senha"
-                    name="password"
-                    ref={register ({ required : true })}
-                />
-                <Link to="/admin/auth/recover" className="login-link-recover">
+                <div className="mb-3">
+                    <input
+                        type="email"
+                        className={`form-control input-base ${errors.username ? 'is-invalid' : ''}`}
+                        placeholder="Email"
+                        name="username"
+                        ref={register({
+                            required: "Campo obrigatório",
+                            pattern: {
+                              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                              message: "Email inválido"
+                            }
+                          })}
+                    />
+                    {errors.username && (
+                        <div className="invalid-feedback d-block">
+                            {errors.username.message}
+                        </div>
+                    )}
+                </div>
+                <div className="mb-2">
+                    <input
+                        type="password"
+                        className={`form-control input-base ${errors.password ? 'is-invalid' : ''}`}
+                        placeholder="Senha"
+                        name="password"
+                        ref={register({ required: "Campo obrigatório" })}
+                    />
+                    {errors.password && (
+                        <div className="invalid-feedback d-block">
+                            {errors.password.message}
+                        </div>
+                    )}
+                </div>
+                <Link to="/auth/recover" className="login-link-recover">
                     Esqueci a senha?
                 </Link>
                 <div className="login-submit">
@@ -62,7 +88,7 @@ const Login = () => {
                     <span className="not-register">
                         Não tem Cadastro?
                     </span>
-                    <Link to="/admin/auth/register" className="login-link-register">
+                    <Link to="/auth/register" className="login-link-register">
                         CADASTRAR
                     </Link>
                 </div>
