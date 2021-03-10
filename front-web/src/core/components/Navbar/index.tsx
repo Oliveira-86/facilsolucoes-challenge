@@ -34,7 +34,7 @@ const Navbar = () => {
                         <div className="main-menu">
                         {currentUser}
                         
-                            <a  href="#" 
+                            <a  href="#logout" 
                                 className="nav-button ml-3" 
                                 onClick={handleLogout}    
                             >
