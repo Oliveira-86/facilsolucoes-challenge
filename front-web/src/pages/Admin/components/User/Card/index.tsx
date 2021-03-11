@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ContractsDate from '../../../../../core/components/ContractsDate';
-import ContractsValue from '../../../../../core/components/ContractsValue';
-import { Contracts } from '../../../../../core/types/Contracts';
+import UserDate from '../../../../../core/components/UserDate';
+import UserValue from '../../../../../core/components/ContractsValue';
+import { Contracts as User } from '../../../../../core/types/Contracts';
 import './styles.scss';
 
 type Props = {
-    contract: Contracts;
-    onRemove: (contractsId: number) => void;
+    contract: User;
+    onRemove: (UserId: number) => void;
 }
 
 const Card = ({ contract, onRemove }: Props) => {
@@ -15,7 +15,7 @@ const Card = ({ contract, onRemove }: Props) => {
 
         <div className="card-base contract-card-admin">
             <div className="col-8">
-                <ul className="card-contracts-data">
+                <ul className="card-User-data">
                     <li>
                         <h5 className=" info-card-data" >
                             {contract.name}
@@ -23,19 +23,19 @@ const Card = ({ contract, onRemove }: Props) => {
                     </li>
                     <li>
                         <h5 className=" info-card-data info-card-marg">
-                            <ContractsValue value={contract.value} />
+                            <UserValue value={contract.value} />
                         </h5>
                     </li>
                     <li>
                         <h5 className=" info-card-data">
-                            <ContractsDate date={contract.date} />
+                            <UserDate date={contract.date} />
                         </h5>
                     </li>
                 </ul>
 
             </div>
-            <div className="col-4 card-contracts-button">
-                <Link to={`/admin/contracts/${contract.id}`} 
+            <div className="col-4 card-User-button">
+                <Link to={`/admin/User/${contract.id}`} 
                     type="button" 
                     className="btn btn-outline-primary btn-edit-exclude-card mr-2" 
                 >

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Switch } from 'react-router';
 import PrivateRoute from '../../core/components/PrivateRoute'
-import Contracts from './components/Contracts';
+import User from './components/User';
+import Contracts from './components/Contracts'
 import Navbar from './components/Navbar';
 import './styles.scss';
 
@@ -15,7 +16,7 @@ const Admin = () => (
                     <Contracts />
                 </PrivateRoute>
                 <PrivateRoute path="/admin/users" allowedRoutes={['ROLE_ADMIN']}>
-                    <h1>Users</h1>
+                    <User />
                 </PrivateRoute>
             </Switch>
         </div>

@@ -1,7 +1,7 @@
 package com.facilsolucoes.challenge.entities.dto;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 
 import com.facilsolucoes.challenge.entities.Contracts;
 
@@ -11,12 +11,12 @@ public class ContractsDTO  implements Serializable{
 	private Long id;
 	private String name;
 	private Double value;
-	private Instant date;
+	private Date date;
 	
 	public ContractsDTO() {
 	}
 
-	public ContractsDTO(Long id, String name, Double value, Instant date) {
+	public ContractsDTO(Long id, String name, Double value, Date date) {
 		this.id = id;
 		this.name = name;
 		this.value = value;
@@ -54,11 +54,11 @@ public class ContractsDTO  implements Serializable{
 		this.value = value;
 	}
 
-	public Instant getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Instant date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 }

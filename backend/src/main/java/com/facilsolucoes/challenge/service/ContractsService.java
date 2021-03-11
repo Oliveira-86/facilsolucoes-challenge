@@ -67,12 +67,9 @@ public class ContractsService {
 	}
 	
 	private void copyDtoToEntity(ContractsDTO dto, Contracts entity) {
+		entity.setName(dto.getName());
 		entity.setValue(dto.getValue());
-		entity.setDate(dto.getDate());
-		
-		
-		
-		
+		entity.setDate(dto.getDate());		
 	}
 	
 }

@@ -1,18 +1,18 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
-import List from '../Contracts/List/index';
+import List from '../user/List/index';
 import Form from './Form';
 
-const Contracts = () => {
+const User = () => {
     
     return (
 
         <div>
             <Switch>
-                <Route path="/admin/contracts" exact>
+                <Route path="/admin/user" exact>
                     <List />
                 </Route>
-                <Route path="/admin/contracts/:contractsId">
+                <Route path="/admin/user/:UserId">
                     <Form />    
                 </Route>
             </Switch>
@@ -21,4 +21,4 @@ const Contracts = () => {
     );
 }
 
-export default Contracts;
+export default User;

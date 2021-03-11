@@ -1,14 +1,15 @@
 package com.facilsolucoes.challenge.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "tb_contracts")
@@ -21,13 +22,14 @@ public class Contracts implements Serializable{
 	private String name;
 	private Double value;
 	
-	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private Instant date;
+	
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	private Date date;
 	
 	public Contracts() {
 	}
 
-	public Contracts(Long id, String name, Double value, Instant date) {
+	public Contracts(Long id, String name, Double value, Date date) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -59,11 +61,11 @@ public class Contracts implements Serializable{
 		this.value = value;
 	}
 
-	public Instant getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Instant date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
