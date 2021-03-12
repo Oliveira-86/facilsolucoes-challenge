@@ -1,54 +1,52 @@
 import { useForm } from 'react-hook-form';
-import { makePrivateRequest, makeResquest } from '../../../../../core/utils/Request';
+import { makePrivateRequest } from '../../../../../core/utils/Request';
 import { toast } from 'react-toastify'
 import BaseForm from '../../BaseForm';
-import history from '../../../../../core/utils/history';
 import { useHistory, useParams } from 'react-router';
 import { useEffect } from 'react';
 
-type ContractData = {
+type UserData = {
     name: string;
-    value: number;
-    date: string;
+    email: string;
+    password: string;
 }
 
 type ParamsType = {
-    contractsId: string;
+    usersId: string;
 }
 
 const Form = () => {
 
-    const { register, handleSubmit, errors, setValue } = useForm<ContractData>();
+    const { register, handleSubmit, errors, setValue } = useForm<UserData>();
     const history = useHistory();
-    const { contractsId } = useParams<ParamsType>();
-    const isEditing = contractsId !== 'create';
-    const formTitle = isEditing ? 'editar contrato' : 'cadastra contrato';
+    const { usersId } = useParams<ParamsType>();
+    const isEditing = usersId !== 'create';
+    const formTitle = isEditing ? 'editar usuário' : 'cadastra usuário';
 
     useEffect(() => {
-     if(isEditing) {
-        makeResquest({ url: `/contracts/${contractsId}` }) 
-        .then(response => {
-            setValue('name', response.data.name);
-            setValue('value', response.data.value);
-            setValue('date', response.data.date);
-        })
-     }
-    }, [contractsId, isEditing, setValue]);
- 
-    const onSubmit = (data: ContractData) => {
+        if (isEditing) {
+            makePrivateRequest({ url: `/users/${usersId}` })
+                .then(response => {
+                    setValue('name', response.data.name);
+                    setValue('email', response.data.email);
+                })
+        }
+    }, [usersId, isEditing, setValue]);
 
-        makePrivateRequest({ 
-            url: isEditing ? `/contracts/${contractsId}` : '/contracts', 
-            method: isEditing ? 'PUT' : 'POST', 
-            data 
+    const onSubmit = (data: UserData) => {
+
+        makePrivateRequest({
+            url: isEditing ? `/users/${usersId}` : '/users',
+            method: isEditing ? 'PUT' : 'POST',
+            data
         })
-        .then(() => {
-            toast.info('Contrato salvo com sucesso!');
-            history.push('/admin/contracts');
-        })
-        .catch(() => {
-            toast.error('Error ao salvar contrato')
-        })
+            .then(() => {
+                toast.info('Usuário salvo com sucesso!');
+                history.push('/admin/users');
+            })
+            .catch(() => {
+                toast.error('Error ao salvar usuário')
+            })
     }
 
     return (
@@ -60,7 +58,7 @@ const Form = () => {
                         type="text"
                         placeholder="Nome"
                         className="form-control input-base"
-                        ref={register({ 
+                        ref={register({
                             required: "Campo obrigatório",
                             minLength: { value: 3, message: 'O campo deve ter no mínimo 5 caracteres' },
                             maxLength: { value: 60, message: 'O campo deve ter no máximo 60 caracteres' }
@@ -74,32 +72,32 @@ const Form = () => {
                 </div>
                 <div className="margin-bottom">
                     <input
-                        type="number"
-                        placeholder="Valor"
+                        type="text"
+                        placeholder="Email"
                         className="form-control input-base margin-bottom col-6"
-                        name="value"
+                        name="email"
                         ref={register({ required: "Campo obrigatório" })}
                     />
                 </div>
-                {errors.value && (
+                {errors.email && (
                     <div className="invalid-feedback d-block">
-                        {errors.value.message}
+                        {errors.email.message}
                     </div>
                 )}
                 <div className="margin-bottom">
                     <input
-                        type="date"
-                        placeholder="Data"
-                        className="form-control input-base margin-bottom col-6"
-                        name="date"
+                        type="password"
+                        className={`form-control input-base col-6 ${errors.password ? 'is-invalid' : ''}`}
+                        placeholder="Senha"
+                        name="password"
                         ref={register({ required: "Campo obrigatório" })}
                     />
+                    {errors.password && (
+                        <div className="invalid-feedback d-block">
+                            {errors.password.message}
+                        </div>
+                    )}
                 </div>
-                {errors.date && (
-                    <div className="invalid-feedback d-block">
-                        {errors.date.message}
-                    </div>
-                )}
             </BaseForm>
         </form>
 

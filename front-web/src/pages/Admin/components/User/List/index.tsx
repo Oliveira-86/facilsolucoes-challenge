@@ -2,19 +2,19 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Pagination from '../../../../../core/components/Pagination';
-import { ContractsResponse } from '../../../../../core/types/Contracts';
-import { makePrivateRequest, makeResquest } from '../../../../../core/utils/Request';
-import ContractsCardLoader from '../../ContractsCardLoader';
-import Card from '../Card';
-import './styles.scss';
+import { UserResponse } from '../../../../../core/types/User';
+import { makePrivateRequest } from '../../../../../core/utils/Request';
+import ListCardLoader from '../../ListCardLoader';
+import Card from '../UserCard';
+
 
 const List = () => {
-    const [contractsResponse, setContractsResponse] = useState<ContractsResponse>();
+    const [userResponse, setUserResponse] = useState<UserResponse>();
     const [isLoading, setIsLoading] = useState(false);
     const [ activePage, setActivePage ] = useState(0);
     const history = useHistory();
 
-    const getContracts = useCallback(() => {
+    const getUser = useCallback(() => {
 
         const params = {
             page: activePage,
@@ -22,51 +22,51 @@ const List = () => {
         }
 
         setIsLoading(true);
-        makeResquest({ url: '/contracts', params })
-            .then(response => setContractsResponse(response.data))
+        makePrivateRequest({ url: '/users', params })
+            .then(response => setUserResponse(response.data))
             .finally(() => {
                 setIsLoading(false);
             })
     }, [activePage]);
 
     useEffect(() => {
-        getContracts();
-    }, [getContracts]);
+        getUser();
+    }, [getUser]);
 
     const handleCreate = () => {
-        return history.push('/admin/contracts/create');
+        return history.push('/admin/users/create');
     }
 
-    const onRemove = (contractsId: number) => {
-        const confirm = window.confirm('Deseja reamente excluir este contrato?')
+    const onRemove = (usersId: number) => {
+        const confirm = window.confirm('Deseja reamente excluir este usuário?')
       
         if(confirm) {
-            makePrivateRequest({ url: `/contracts/${contractsId}`, method: 'DELETE' })
+            makePrivateRequest({ url: `/users/${usersId}`, method: 'DELETE' })
             .then(() => {
-                toast.info('Contrato removido com sucesso!');
+                toast.info('Usuário removido com sucesso!');
             })
             .catch(() => {
-                toast.error('Error ao removido contrato')
+                toast.error('Error ao remover Usuário')
             })
         }
     };
 
 
     return (
-        <div className="admin-contracts-list">
+        <div className="admin-user-list">
             <div className="btn btn-primary btn-lg" onClick={handleCreate}>
                 ADICIONAR
             </div>
             <div className="admin-list-container">
-                {isLoading ? <ContractsCardLoader /> : (
-                    contractsResponse?.content.map(contract => (
-                        <Card contract={contract} key={contract.id} onRemove={onRemove} />
+                {isLoading ? <ListCardLoader /> : (
+                    userResponse?.content.map(user => (
+                        <Card user={user} key={user.id} onRemove={onRemove} />
                     ))
                 )}
             </div>
-            {contractsResponse && (
+            {userResponse && (
                 <Pagination 
-                    totalPages={contractsResponse?.totalPages}
+                    totalPages={userResponse?.totalPages}
                     activePage={activePage}
                     onChange={page => setActivePage(page)}
                 />

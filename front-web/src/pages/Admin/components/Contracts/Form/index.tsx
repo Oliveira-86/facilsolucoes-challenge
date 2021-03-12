@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import { makePrivateRequest, makeResquest } from '../../../../../core/utils/Request';
 import { toast } from 'react-toastify'
 import BaseForm from '../../BaseForm';
-import history from '../../../../../core/utils/history';
 import { useHistory, useParams } from 'react-router';
 import { useEffect } from 'react';
 

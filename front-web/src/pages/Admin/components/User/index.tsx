@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
-import List from '../user/List/index';
+import List from '../User/List/index';
 import Form from './Form';
 
 const User = () => {
@@ -9,10 +9,10 @@ const User = () => {
 
         <div>
             <Switch>
-                <Route path="/admin/user" exact>
+                <Route path="/admin/users" exact>
                     <List />
                 </Route>
-                <Route path="/admin/user/:UserId">
+                <Route path="/admin/users/:usersId">
                     <Form />    
                 </Route>
             </Switch>

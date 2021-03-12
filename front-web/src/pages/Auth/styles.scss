@@ -2,6 +2,8 @@
     display: flex;
     padding: 40px 40px 100px 0;
     justify-content: center;
+    background: url('../../core/assets/images/bg-login.svg') no-repeat bottom;
+    background-size: 100%;
 }
 
 .auth-info-title { 
@@ -14,3 +16,9 @@
     margin-left: 70px;
 }
 
+@media (max-width: 768px) {
+    .auth-info-content {
+        display: none;
+    }
+
+} 

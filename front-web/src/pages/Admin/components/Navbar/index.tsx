@@ -7,7 +7,7 @@ const Navbar = () => (
     <nav className="admin-nav-container">
         <ul>
             <li>
-                <NavLink to="/admin/contracts" className="admin-nav-item">
+                <NavLink to="/admin/contracts" className="admin-nav-item margin-media">
                     <p className="admin-nav-text">Meus Contratos</p>
                 </NavLink>
             </li>

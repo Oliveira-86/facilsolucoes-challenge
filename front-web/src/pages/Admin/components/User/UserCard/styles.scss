@@ -1,4 +1,4 @@
-.contract-card-admin {
+.user-card-admin {
     margin-bottom: 20px;
     border-radius: 10px;
     padding: 15px 20px 15px 20px;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.contract-card-text {
+.user-card-text {
     display: block;
     font-size: 18px;
     line-height: 25px;
@@ -14,8 +14,9 @@
     color: #263238;
 }
 
-.card-contracts-data {
+.card-user-data {
     display: flex;
+    justify-content: space-around;
 }
 
 .info-card-data {
@@ -31,7 +32,7 @@
     margin-right: 120px;
 }
 
-.card-contracts-button {
+.card-user-button {
     display: flex;
     justify-content: center;
     align-items: center;

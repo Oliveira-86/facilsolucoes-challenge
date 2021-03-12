@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import Pagination from '../../../../../core/components/Pagination';
 import { ContractsResponse } from '../../../../../core/types/Contracts';
 import { makePrivateRequest, makeResquest } from '../../../../../core/utils/Request';
-import ContractsCardLoader from '../../ContractsCardLoader';
+import ContractsCardLoader from '../../ListCardLoader';
 import Card from '../Card';
 import './styles.scss';
 
