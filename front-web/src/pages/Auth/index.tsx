@@ -11,7 +11,7 @@ const Auth = () => (
                 Tenha acesso aos <br /> seus contratos
             </h1>
             <AuthImg />
-        </div>
+        </div>""
         <div className="auth-content">
             <Login />
         </div>
