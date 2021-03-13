@@ -53,11 +53,11 @@ const List = () => {
 
 
     return (
-        <div className="admin-contracts-list">
+        <div className="admin-contracts-list ">
             <div className="btn btn-primary btn-lg" onClick={handleCreate}>
                 ADICIONAR
             </div>
-            <div className="admin-list-container">
+            <div className="admin-list-container ">
                 {isLoading ? <ContractsCardLoader /> : (
                     contractsResponse?.content.map(contract => (
                         <Card contract={contract} key={contract.id} onRemove={onRemove} />

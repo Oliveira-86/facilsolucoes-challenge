@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as ImgHome } from '../../core/assets/images/facilsolucoes.svg';
+import { ReactComponent as ImgHome } from '../../core/assets/images/logo_branca.svg';
 import { Link } from 'react-router-dom';
 import ButtonIcon from '../../core/components/ButtonIcon';
 import './styles.scss';
