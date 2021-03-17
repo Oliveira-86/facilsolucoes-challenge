@@ -16,7 +16,7 @@ type LoginData = {
     password: string;
 }
 
-const URL_BASE = 'http://localhost:8080/';
+const URL_BASE = 'http://localhost:8080';
 
 axios.interceptors.response.use(function(response) {
     return response;

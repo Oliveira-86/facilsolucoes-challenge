@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ReactComponent as ImgNav } from '../../assets/images/logo.svg';
+import { ReactComponent as ImgNav } from '../../assets/images/setalogo.svg';
 import { getAccessTokenDecoded, logout } from '../../utils/OAuth';
 import './style.scss';
 
@@ -23,9 +23,9 @@ const Navbar = () => {
     return (
 
         <nav className="row bg-primary main-nav">
-            <div className="col-2 row nav-logo">
-                <Link to="/" >
-                    <ImgNav />
+            <div className="col-2">
+                <Link to="/">
+                    <ImgNav />     
                 </Link>
             </div>
             <div className="col-9">

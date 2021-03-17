@@ -9,9 +9,9 @@ const Home = () => (
     <div className="home-container">
         <div className=" home-content">
             <div>
-                <h1 className="text-title">Desafio Fácil Soluções</h1>
-                <p className="text-subtitle">Vaga para Desenvolvedor Frontend - React </p>
-                <ImgHome />
+                <h1 className="text-title">Desafio CRUD </h1>
+                <p className="text-subtitle">Desenvolvimento Fullstack  </p>
+                <h1 className="text-subtitle-2"> ReactJS / Java</h1>
             </div>
             <Link to="/admin">
                 <ButtonIcon text="cadastre-se" />   

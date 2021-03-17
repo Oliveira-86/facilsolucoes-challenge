@@ -5,13 +5,7 @@ import './styles.scss';
 
 const Auth = () => (
 
-    <div className="auth-container">
-        <div className="auth-info-content">
-            <h1 className="auth-info-title">
-                Tenha acesso aos <br /> seus contratos
-            </h1>
-            <AuthImg />
-        </div>""
+    <div className="auth-container">   
         <div className="auth-content">
             <Login />
         </div>
